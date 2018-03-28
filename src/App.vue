@@ -29,6 +29,6 @@ html, body {
 }
 .main{
   grid-row-start: 2;
-  background-color: #99abc7;
+  background-color: #676767;
 }
 </style>
