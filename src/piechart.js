@@ -1,5 +1,4 @@
 export const pieChart = {
-
   type: 'pie',
   data: {
     datasets: [{
@@ -13,9 +12,9 @@ export const pieChart = {
     }],
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
-      'Positiv',
+      'Positive',
       'Neutral',
-      'Negativ'
+      'Negative'
     ]
   },
   options: {
