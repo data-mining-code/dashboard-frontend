@@ -1,4 +1,4 @@
-export const pieChart = {
+export const horizontalBar = {
     type: 'horizontalBar',
     data: {
       datasets: [{
@@ -29,6 +29,7 @@ export const pieChart = {
       scales: {
           xAxes: [{
               ticks: {
+                suggestedMin: 0,
                 fontColor: 'black',
                 fontSize: 15    
               },
@@ -48,5 +49,5 @@ export const pieChart = {
       }
     }
   }
-  export default pieChart
+  export default horizontalBar
     

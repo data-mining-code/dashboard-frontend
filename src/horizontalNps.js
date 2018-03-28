@@ -1,8 +1,8 @@
-export const pieChart = {
+export const horizontalNps = {
     type: 'horizontalBar',
     data: {
       datasets: [{
-        data: [10, 20, 30],
+        data: [10, 20, 30, 40],
         backgroundColor: [
           '#002d72', 
           '#002d72',
@@ -51,5 +51,5 @@ export const pieChart = {
       }
     }
   }
-  export default pieChart
+  export default horizontalNps
     
