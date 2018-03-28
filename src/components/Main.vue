@@ -1,9 +1,10 @@
 <template>
   <div class="main">
     <div class="sales">
-      <p class="head">
-        <b><ins>Sales</ins></b>
-      </p>
+      <div id="wrapper">
+        <h1>Sales</h1>
+        <canvas id="salesBar"></canvas>
+      </div>
     </div>
     <div class="nps">
       <p class="head">
@@ -17,17 +18,16 @@
       </div>
     </div>
     <div class="userTypePie">
-      <p class="head">
-        <b><ins>Usertype pie chart</ins></b>
-      </p>
-      <div style="position: relative; width:50%; float:left">
-        <canvas id="userTypePie"></canvas>
+      <h1>Usertypes</h1>
+      <div id="wrapperPie" style="width:50%; height:85%; float:left;">
+        <canvas id="userTypePie" style="width:75%; height:50%; margin-left: 10px; margin-top: 20px;"></canvas>
+        <p style="margin-left: 10px; margin-top: 5px;">Current Month</p>
       </div>
-      <div style="position: relative; width: 50%; float: right">
-
+      <div class="wrapperBar" style="width:50%; height: 85%;float:right;">
+        <canvas id="userBarChart" style="width:70%; height:50%; margin-left: 10px; margin-top: 30px; margin-right: 10px;"></canvas>
       </div>
     </div>
-    <div class="commonQuestions">
+    <div class="issuesResolved">
       <p class="head">
         <b><ins>Issues Resolved</ins></b>
       </p>  
@@ -58,6 +58,7 @@
         </tr>
       </table>
     </div>
+
     <div class="topProducts">
       <p class="head">
         <b><ins>Topproducts</ins></b>
@@ -77,10 +78,14 @@
 <script>
 import HTTP from '../http-rest.js'
 import Chart from 'chart.js'
+import { Gauge } from '../gauge.js'
+import gaugeChart from '../gaugeChart.js'
 import pieChart from '../piechart.js'
+import salesBarChart from '../salesBarChart.js'
+import userBarChart from '../userBarChart.js'
 import horizontalBar from '../horizontalBar.js'
 import horizontalNps from '../horizontalNps.js'
-import { Gauge } from '../gaugeJs.js'
+
 export default {
   name: 'Main',
   data () {
@@ -89,6 +94,9 @@ export default {
       pieChart: pieChart,
       horizontalBar: horizontalBar,
       horizontalNps: horizontalNps
+      salesBarChart: salesBarChart,
+      userBarChart: userBarChart,
+      gaugeChart: gaugeChart
     }
   },
   methods: {
@@ -114,59 +122,20 @@ export default {
         scaleFontColor: "#ff0000"
       })
     },
-    initGauge (gaugeId) {
-      let opts = {
-        angle: -0.26, // The span of the gauge arc
-        lineWidth: 0.2, // The line thickness
-        radiusScale: 1, // Relative radius
-        pointer: {
-          length: 0.6, // // Relative to gauge radius
-          strokeWidth: 0.035, // The thickness
-          color: '#000000' // Fill color
-        },
-        limitMax: true,     // If false, max value increases automatically if value > maxValue
-        limitMin: true,     // If true, the min value of the gauge will be fixed
-        colorStart: '#6FADCF',   // Colors
-        colorStop: '#8FC0DA',    // just experiment with them
-        strokeColor: '#E0E0E0',
-        generateGradient: true,
-        highDpiSupport: true,     // High resolution support
-        renderTicks: {
-          divisions: 5,
-          divWidth: 1.1,
-          divLength: 0.7,
-          divColor: '#0F2533',
-          subDivisions: 3,
-          subLength: 0.5,
-          subWidth: 0.6,
-          subColor: '#666666'
-        },
-        staticLabels: {
-          font: "20px sans-serif",  // Specifies font
-          labels: [-100, -25, 0, 25, 100],  // Print labels at these values
-          color: "#000000",  // Optional: Label text color
-          fractionDigits: 0  // Optional: Numerical precision. 0=round off.
-        },
-        staticZones: [
-          {strokeStyle: "#F03E3E", min: -100, max: -25}, // Red from 100 to 130
-          {strokeStyle: "#FFDD00", min: -25, max: 25}, // Yellow
-          {strokeStyle: "#30B32D", min: 25, max: 100}, // Green
-        ],
-      }
-      let gauge = new Gauge(document.getElementById(gaugeId))
-      gauge.maxValue = 100 // set max gauge value
-      gauge.setMinValue(-100)  // Prefer setter over gauge.minValue = 0
-      gauge.animationSpeed = 62 // set animation speed (32 is default value)
-      gauge.set(25) // set actual value
-      gauge.setOptions(opts) // create sexy gauge!
+    createGaugeChart (chartId, chartData, backendData) {
+      var target = document.getElementById(chartId); // your canvas element
+      var gauge = new Gauge(target).setOptions(chartData); // create sexy gauge!
+      gauge.maxValue = 100; // set max gauge value
+      gauge.setMinValue(-100);  // Prefer setter over gauge.minValue = 0
+      gauge.animationSpeed = 75; // set animation speed (32 is default value)
+      gauge.set(backendData); // set actual value
     }
   },
   mounted () {
-    this.createChart('userTypePie', this.pieChart, [this.data.user_type.pos.times, this.data.user_type.neu.times, this.data.user_type.neg.times])
-    this.createChart('issuesResolved', this.horizontalBar, [300,189,570])
-    this.createChart('horizontalNps', this.horizontalNps, [60,-20,40,50])
-    this.initGauge('foo')
-    this.data = this.req()
+    this.createChart('userTypePie', this.pieChart, [50, 100, 20])
+    this.createChart('salesBar', this.salesBarChart, [100, 130, 70, 67, 45, 43, 45, 90])
+    this.createChart('userBarChart', this.userBarChart, [50, 70, 30])
+    this.createGaugeChart('gaugeChart', this.gaugeChart, [0])
   }
 }
 </script>
@@ -207,6 +176,21 @@ td {
 table#ComQue td {
   padding: 5px;
 }
+h1 {
+  color:#ffffff;
+  font-size:21px;
+  font-weight: 700;
+  margin: 0;
+  padding: 10px;
+}
+
+p {
+  color:#ffffff;
+  font-size:17px;
+  font-weight: 700;
+  margin: 0;
+  padding: 10px;
+}
 .sales{
   grid-area: 1 / 1 / 4 / 2;
 }
@@ -216,13 +200,18 @@ table#ComQue td {
 .userTypePie{
   grid-area: 1 / 2 / 4 / 3;
 }
-.commonQuestions{
-  grid-area: 4 / 2 / 7 / 3;
+.issuesResolved{
+  grid-area: 4 / 2 / 7 / 2;
 }
 .topLocations{
   grid-area: 1 / 3 / 4 / 4;
 }
 .topProducts{
   grid-area: 4 / 3 / 7 / 4;
+}
+table, th, td {
+  color: #ffffff;
+  padding: 7px;
+
 }
 </style>

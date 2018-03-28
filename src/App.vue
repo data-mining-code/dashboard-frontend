@@ -34,13 +34,7 @@ html, body {
 }
 .main{
   grid-row-start: 2;
-  background-color: #002d72;
-}
-.navbartemp {
-  grid-row-start: 1;
-  margin: 0;
-  font-size: 55px;
-  background-color: #002d72;
-  color: #ffed00;
+  background-color: #676767;
+
 }
 </style>
