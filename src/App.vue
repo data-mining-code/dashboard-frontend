@@ -35,7 +35,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: black;
+  color: #444444;
   height: 100%;
   width: 100%;
   display: grid;
@@ -52,6 +52,7 @@ ul#navbar {
   padding: 0;
   overflow: hidden;
   grid-row-start: 2;
+
 }
 li {
   float: left;
@@ -68,32 +69,11 @@ li a {
   border-radius: 0px 30px 0 0;
   border: 2px solid black
 }
-/*
-li a:after {
-  content: "";
-  width: 0;
-  position: relative;
-  top: 14px;
-  right: -47px;
-  border-top: 84px solid white;
-  border-left: 30px solid #002d72;
-}
-li a:before {
-  content: "";
-  width: 0;
-  position: relative;
-  top: -14px;
-  left: -47px;
-  border-top: 84px solid white;
-  border-right: 30px solid #002d72;
-}
- Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: #111;
 }
 .main{
   grid-row-start: 3;
   background-color: #676767;
-
 }
 </style>
