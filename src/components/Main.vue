@@ -1,76 +1,84 @@
 <template>
   <div class="main">
     <div class="sales">
-      <div id="wrapper">
+      <div id="wrapperSales">
         <h1>Sales</h1>
         <canvas id="salesBar"></canvas>
       </div>
     </div>
     <div class="nps">
-      <p class="head">
-        <b><ins>NPS</ins></b>
-      </p>
-      <div style="position: relative; width:50%; float: left; margin: 15% 5% 0 0">
-        <canvas id="gaugeChart"></canvas>
+      <h1 class="head">
+        <b>NPS</b>
+      </h1>
+      <div id="wrapperGauge" style="width:45%;height:85%; float: left; display:flex;justify-content:center;">
+        <canvas id="gaugeChart" style="width:100%;height:65%;margin-top:2.5vw;margin-left:1vw;"></canvas>
       </div>
-      <div style="position: relative; width:40%; float: right; margin: 15% 5% 0 0">
-        <canvas id="horizontalNps"></canvas>
+      <div id="wrapperGauge" style="width:45%;height:85%; float: right;">
+        <canvas id="horizontalNps" style="width:100%;height:65%;margin-top:3vw;padding-right:4%;"></canvas>
       </div>
     </div>
     <div class="userTypePie">
       <h1>Usertypes</h1>
       <div id="wrapperPie" style="width:50%; height:85%; float:left;">
-        <canvas id="userTypePie" style="width:75%; height:50%; margin-left: 10px; margin-top: 20px;"></canvas>
-        <p style="margin-left: 10px; margin-top: 5px;">Current Month</p>
+        <canvas id="userTypePie" style="width:75%; height:50%; margin-left: .8vw; margin-top: 1.6vw;"></canvas>
+        <p style="margin-left: .7vw; margin-top: vw;">Current Month</p>
       </div>
-      <div class="wrapperBar" style="width:50%; height: 85%;float:right;">
-        <canvas id="userBarChart" style="width:70%; height:50%; margin-left: 10px; margin-top: 30px; margin-right: 10px;"></canvas>
+      <div class="wrapperBar" style="width:45%; height: 80%;float:right;margin-right:3%;">
+        <canvas id="userBarChart" style="width:70%; height:50%; margin-left: .7vw; margin-top: 2.5vw; margin-right: .7vw;"></canvas>
       </div>
     </div>
     <div class="issuesResolved">
-      <p class="head">
-        <b><ins>Issues Resolved</ins></b>
-      </p>  
-      <div style="position: relative; width:50%;">
-        <canvas id="horizontalBar"></canvas>
+      <div id="wrapper" style="width:100%; height:50%;">
+        <h1 class="head" style="display:flex;justify-content:center;">
+          Issues Resolved
+        </h1>
+        <div style="width:50%;display:flex;margin:auto;">
+          <canvas id="horizontalBar"></canvas>
+        </div>
       </div>
-      <p class="head">
-        <b><ins>Common Questions</ins></b>
-      </p>
-      <table id="ComQue">
-        <tr v-for="(value, key, index) in data.question" :key="index" v-if="index < 3">
-          <td># {{ index + 1 }}</td>
-          <td>{{ value.string }}</td>
-          <td>{{ value.times }}</td>
-        </tr>
-      </table> 
+      <div id="wrapper" style="width:100%;height:50%;float:right;">
+        <h1 class="head" style="display:flex;justify-content:center;">
+          <b>Common Questions</b>
+        </h1>
+        <table id="ComQue">
+          <tr v-for="(value, key, index) in data.question" :key="index" v-if="index < 3">
+            <td># {{ index + 1 }}</td>
+            <td>{{ value.string }}</td>
+            <td>{{ value.times }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="topLocations">
-      <p class="head">
-        <b><ins>TopLocations</ins></b>
-      </p>
-      <table id="topLoc">
-        <tr id="first"><th>Rank</th><th>Location</th><th>Mentioned</th></tr>
-        <tr v-for="(value, key, index) in data.shops" :key="index">
-          <td># {{ index + 1 }}</td>
-          <td id="name">{{ key }}</td>
-          <td>{{ value.times }}</td>
-        </tr>
-      </table>
+    <div class="topLocations" style="display:flex; justify-content:center;">
+      <div id="wrapper" style="width:90%; height:75%;">
+        <h1 class="head" style="display:flex; justify-content:center;">
+          <b>TopLocations</b>
+        </h1>
+        <table id="topLoc">
+          <tr id="first"><th>Rank</th><th>Location</th><th>Mentioned</th></tr>
+          <tr v-for="(value, key, index) in data.shops" :key="index">
+            <td># {{ index + 1 }}</td>
+            <td id="name">{{ key }}</td>
+            <td>{{ value.times }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
+      <div class="topProducts" style="display:flex; justify-content:center;">
+        <div id="wrapper" style="width:90%;height:75%;">
+            <h1 class="head" style="display:flex; justify-content:center;">
 
-    <div class="topProducts">
-      <p class="head">
-        <b><ins>Topproducts</ins></b>
-      </p>
-      <table id="topPro">
-        <th>Rank</th><th>Products</th><th>Mentioned</th>
-        <tr v-for="(value, key, index) in data.product" :key="index">
-          <td># {{ index + 1 }}</td>
-          <td id="name">{{ key }}</td>
-          <td>{{ value.times }}</td>
-        </tr>
-      </table>
+              <b>Topproducts</b>
+            </h1>
+          <table id="topPro">
+            <th>Rank</th><th>Products</th><th>Mentioned</th>
+            <tr v-for="(value, key, index) in data.product" :key="index">
+              <td># {{ index + 1 }}</td>
+              <td id="name">{{ key }}</td>
+              <td>{{ value.times }}</td>
+            </tr>
+          </table>
+        </div>
     </div>
   </div>
 </template>
@@ -127,17 +135,17 @@ export default {
       var gauge = new Gauge(target).setOptions(chartData); // create sexy gauge!
       gauge.maxValue = 100; // set max gauge value
       gauge.setMinValue(-100);  // Prefer setter over gauge.minValue = 0
-      gauge.animationSpeed = 75; // set animation speed (32 is default value)
+      gauge.animationSpeed = 45; // set animation speed (32 is default value)
       gauge.set(backendData); // set actual value
     }
   },
   mounted () {
-    this.createChart('userTypePie', this.pieChart, [50, 100, 20])
+    this.createChart('userTypePie', this.pieChart, [this.data.user_type.pos.times, this.data.user_type.neu.times, this.data.user_type.neg.times]) //v-for="(value, key, index) in data.shops" :key="index"
     this.createChart('salesBar', this.salesBarChart, [100, 130, 70, 67, 45, 43, 45, 90])
     this.createChart('userBarChart', this.userBarChart, [50, 70, 30])
     this.createChart('horizontalNps', this.horizontalNps, [70, -10, 40, 50])
-    this.createChart('horizontalBar', this.horizontalBar, [70, 40, 50])
-    this.createGaugeChart('gaugeChart', this.gaugeChart, [0])
+    this.createChart('horizontalBar', this.horizontalBar, [70, 40, 130])
+    this.createGaugeChart('gaugeChart', this.gaugeChart, [40])
   }
 }
 </script>
@@ -150,48 +158,49 @@ export default {
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .sales, .nps, .issuesResolved, .userTypeBar, .userTypePie, .commonQuestions, .topLocations, .topProducts{
-  border: 7px solid #002d72;
-  border-radius: 15px;
+  border: .3vw solid white;
+  border-radius: .7vw;
   background-color: grey;
 }
+
 .head {
-  font-size: 30px;
+  font-size: 2vw;
   margin: 0;
-  padding: 7px 11px;
+  padding: .7vw 1.1vw;
   text-align: left;
 }
 table {
   border-collapse: collapse;
-  margin: 20px auto 0 auto;
-  width: 590px;
+  margin: 1vw auto 0 auto;
+  width: 100%;
 }
 table#ComQue{
-  font-size: 25px;
+  font-size: 1,5vw;
 }
 table#topPro, table#topLoc {
-  font-size: 37px;
+  font-size: 1.5vw;
 }
 td {
-  border-top: 3px solid black;
-  padding: 0 10px;
+  border-top: .3vw solid #727272;
+  padding: 0 0;
 }
 table#ComQue td {
-  padding: 5px;
+  padding: .5vw;
 }
 h1 {
   color:#ffffff;
-  font-size:21px;
+  font-size:2vw;
   font-weight: 700;
   margin: 0;
-  padding: 10px;
+  padding: .5vw;
 }
 
 p {
   color:#ffffff;
-  font-size:17px;
+  font-size: 1.5vw;
   font-weight: 700;
   margin: 0;
-  padding: 10px;
+  padding: .5vw;
 }
 .sales{
   grid-area: 1 / 1 / 4 / 2;
@@ -213,7 +222,17 @@ p {
 }
 table, th, td {
   color: #ffffff;
-  padding: 7px;
-
+  padding: .5vw;
 }
+
+#wrapperSales, #salesBar {
+  width: 100%;
+  height: 80%;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+}
+
 </style>
