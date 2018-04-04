@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1 id="mainH">DASHBOARD</h1>
     <ul id="navbar">
       <li>
         <router-link to="/">
@@ -35,11 +36,21 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #444444;
+  color: white;
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 10px 60px 1fr;
+  grid-template-rows: 10px 50px 1fr;
+}
+#mainH {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  right: 0;
+  color: black;
+  font-size: 42px;
+  padding: 0;
+  margin: 0 auto;
 }
 html, body {
   margin: 0;
@@ -74,6 +85,6 @@ li a:hover {
 }
 .main{
   grid-row-start: 3;
-  background-color: #676767;
+  background-color: white;
 }
 </style>

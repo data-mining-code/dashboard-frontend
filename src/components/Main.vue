@@ -192,7 +192,7 @@ table {
   width: 100%;
 }
 table#ComQue{
-  font-size: 1,5vw;
+  font-size: 1vw;
 }
 table#topPro, table#topLoc {
   font-size: 1.5vw;
