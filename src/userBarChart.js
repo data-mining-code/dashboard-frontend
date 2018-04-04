@@ -33,12 +33,14 @@ export const userBarChart = {
               display:false
           },
           gridLines: {
+            drawBorder: true
           },
           stacked: true
       }],
       yAxes: [{
           gridLines: {
-              display:false
+              display:false,
+              drawBorder: false
           },
           stacked: true,
           ticks: {

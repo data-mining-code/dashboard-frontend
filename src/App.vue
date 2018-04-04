@@ -21,7 +21,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: black;
+  color: #444444;
   height: 100%;
   width: 100%;
   display: grid;
@@ -34,7 +34,7 @@ html, body {
 }
 .main{
   grid-row-start: 2;
-  background-color: #676767;
+  background-color: white;
 
 }
 </style>
