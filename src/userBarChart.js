@@ -4,13 +4,13 @@ export const userBarChart = {
     labels: ["Dez", "Jan", "Feb"],
 
     datasets: [{
-        data: [30, 50, 45],
+        data: [240, 490, 350],
         backgroundColor: 'rgba(250,75,40,.8)'
     },{
-        data: [110, 140, 160],
+        data: [600, 340, 580],
         backgroundColor: 'rgba(250, 181, 71, .8)'
     },{
-        data: [80, 100, 90],
+        data: [570, 580, 480],
         backgroundColor: 'rgba(75,250,75,.8)'
     }]
   },
@@ -25,26 +25,27 @@ export const userBarChart = {
     scales: {
       xAxes: [{
           ticks: {
-            suggestedMax: 300,
+            suggestedMax: 1300,
             beginAtZero:true,
-            fontColor: '#ffffff'
+            fontColor: '#666666ff'
           },
           scaleLabel:{
               display:false
           },
           gridLines: {
-            drawBorder: true
+            drawBorder: false,
+            display: false 
           },
           stacked: true
       }],
       yAxes: [{
           gridLines: {
-              display:false,
-              drawBorder: false
+            display:false,
+            drawBorder: false
           },
           stacked: true,
           ticks: {
-            fontColor: "#ffffff"
+            fontColor: "#cccccc"
           }
       }]
     },

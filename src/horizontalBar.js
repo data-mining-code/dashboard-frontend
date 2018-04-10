@@ -25,20 +25,22 @@ export const horizontalBar = {
           xAxes: [{
               ticks: {
                 suggestedMin: 0,
-                fontColor: '#ffffff',
+                fontColor: '#cccccc',
                 fontSize: 15
               },
               gridLines: {
-                  display: false
+                display: false,
+                drawBorder: false
               }
           }],
           yAxes: [{
               ticks: {
-                fontColor: '#ffffff',
+                fontColor: '#cccccc',
                 fontSize: 15
               },
               gridLines: {
-                  display: false
+                display: false,
+                drawBorder: false
               }
           }]
       }

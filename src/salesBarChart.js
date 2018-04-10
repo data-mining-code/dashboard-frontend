@@ -38,15 +38,19 @@ export const salesBarChart = {
     scales: {
       xAxes: [{
         ticks: {
-          fontColor: '#ffffff'
+          fontColor: '#cccccc'
         },
         gridLines: {
-          display: false
+          display: false,
+          drawBorder: false
         }
       }],
       yAxes: [{
         ticks: {
-          fontColor: '#ffffff'
+          fontColor: '#cccccc'
+        },
+        gridLines: {
+          drawBorder: false
         }
       }]
     }

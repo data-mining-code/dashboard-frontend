@@ -30,21 +30,22 @@ export const horizontalNps = {
           xAxes: [{
               ticks: {
                 suggestedMin: -100,
-                fontColor: '#ffffff',
+                fontColor: '#cccccc',
                 fontSize: 15
               },
               gridLines: {
-                  display: false
+                display: true,
+                drawBorder: false
               }
           }],
           yAxes: [{
               ticks: {
-                fontColor: '#ffffff',
+                fontColor: '#cccccc',
                 fontSize: 15
               },
               gridLines: {
-                  display: false,
-                  drawBorder: true
+                display: false,
+                drawBorder: false
               }
           }]
       }

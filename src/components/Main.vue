@@ -158,7 +158,7 @@ export default {
   },
   mounted () {
     this.createChart('salesBar', this.salesBarChart, [100, 130, 70, 67, 45, 43, 45, 90])
-    this.createChart('userBarChart', this.userBarChart, [50, 70, 30])
+    this.createChart('userBarChart', this.userBarChart, [240, 490, 350])
     this.createChart('horizontalNps', this.horizontalNps, [70, -10, 40, 50])
     this.createGaugeChart('gaugeChart', this.gaugeChart, [0])
     this.req()
@@ -175,10 +175,11 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  color: #cccccc;
 }
 .sales, .nps, .issuesResolved, .userTypeBar, .userTypePie, .commonQuestions, .topLocations, .topProducts{
-  border: .2vw solid white;
-  background-color: grey;
+  border: .2vw solid #d9d9d9ff;
+  background-color: #666666ff;
 }
 
 .head {
@@ -206,7 +207,6 @@ table#ComQue td {
   padding: .5vw;
 }
 h1 {
-  color:#ffffff;
   font-size:1.7vw;
   font-weight: 700;
   margin: 0;
@@ -215,7 +215,6 @@ h1 {
 }
 
 p {
-  color:#ffffff;
   font-size: 1.5vw;
   font-weight: 700;
   margin: 0;
@@ -240,7 +239,7 @@ p {
   grid-area: 4 / 3 / 7 / 4;
 }
 table, th, td {
-  color: #ffffff;
+  color: #d9d9d9;
   padding: .5vw;
 }
 
