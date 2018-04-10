@@ -3,17 +3,17 @@
     <h1 id="mainH">DASHBOARD</h1>
     <ul id="navbar">
       <li>
-        <router-link to="/">
+        <router-link to="/" exact-active-class="is-active">
           Overview
         </router-link>
       </li>
       <li>
-        <router-link to="/tabone">
+        <router-link to="/tabone" exact-active-class="is-active">
           Tab 1
         </router-link>
       </li>
       <li>
-        <router-link to="/tabtwo">
+        <router-link to="/tabtwo" exact-active-class="is-active">
           Tab 2
         </router-link>
       </li>
@@ -40,11 +40,12 @@ export default {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 10px 50px 1fr;
+  grid-template-rows: 50px 1fr;
 }
 #mainH {
   position: absolute;
-  top: 7px;
+  z-index: -1;
+  top: 2px;
   left: 0;
   right: 0;
   color: black;
@@ -62,29 +63,27 @@ ul#navbar {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  grid-row-start: 2;
+  grid-row-start: 1;
 
 }
 li {
   float: left;
   height: 100%;
+  margin: .2vw;
+  background-color: #999999ff;
 }
 li a {
   font-size: 1.4vw;
   display: block;
   color: white;
-  text-align: left;
-  padding: 14px 16px;
+  padding: 5px 16px;
   text-decoration: none;
-  background-color: #002d72;
-  border-radius: 0px 30px 0 0;
-  border: 2px solid black
 }
-li a:hover {
-  background-color: #111;
+.is-active {
+  background-color: #666666ff;
 }
 .main{
-  grid-row-start: 3;
+  grid-row-start: 2;
   background-color: white;
 }
 </style>

@@ -98,7 +98,7 @@ export default {
   name: 'Main',
   data () {
     return {
-      data: {'product': {'Lettuce': {'times': 8, 'percent': 0.47058823529411764}, 'Eggs': {'times': 2, 'percent': 0.11764705882352941}, 'Apple': {'times': 2, 'percent': 0.11764705882352941}, 'Steak pork': {'times': 1, 'percent': 0.058823529411764705}, 'Tomato': {'times': 3, 'percent': 0.17647058823529413}}, 'shops': {'Friedrichshain': {'times': 105, 'percent': 1.0}, 'Mitte': {'times': 49, 'percent': 1.0}, 'Lichtenberg': {'times': 20, 'percent': 1.0}, 'Neukölln': {'times': 10, 'percent': 1.0}, 'Kreuzberg': {'times': 4, 'percent': 1.0}}, 'user_type': {'neu': {'times': 16, 'percent': 0.8}, 'neg': {'times': 1, 'percent': 0.05}, 'pos': {'times': 3, 'percent': 0.15}}, 'question': {'stock do Lettuce stock  ': {'string': 'Do you have Lettuce in stock?', 'times': 7, 'percent': 0.20588235294117646}, 'address where  shop  friedrichshain': {'string': 'Where is your shop in Friedrichshain?', 'times': 1, 'percent': 0.029411764705882353}, 'description do Eggs  bio ': {'string': 'Do you have Bio Eggs?', 'times': 1, 'percent': 0.029411764705882353}, 'stock do Eggs stock  ': {'string': 'Do you have Eggs in stock?', 'times': 1, 'percent': 0.029411764705882353}}}, // "hours when  hours  ": {"string": "When are your opening hours?", "times": 3, "percent": 0.08823529411764706}, "discount  Apple discount  ": {"string": "Is apples on discount?", "times": 1, "percent": 0.029411764705882353}, "not_found": {"string": "Do you have Apples in sale?", "times": 8, "percent": 0.23529411764705882}, "stock do Apple stock  ": {"string": "Do you have Apples in stock?", "times": 1, "percent": 0.029411764705882353}, "address where  store  friedrichshain": {"string": "Where is your store in Friedrichshain?", "times": 3, "percent": 0.08823529411764706}, "all_locations do  stores  ": {"string": "Where do you have stores?", "times": 1, "percent": 0.029411764705882353}, "description do   vegan ": {"string": "do you have vegan salad?", "times": 1, "percent": 0.029411764705882353}, "description do Apple  bio ": {"string": "Do you have Bio Apples?", "times": 1, "percent": 0.029411764705882353}, "description do Steak pork  halal ": {"string": "Do you have halal steak?", "times": 1, "percent": 0.029411764705882353}, "stock do Tomato stock  ": {"string": "Do you have Tomatoes in stock?", "times": 3, "percent": 0.08823529411764706}, "stock do Shampoo stock  ": {"string": "Do you have shampoo in stock?", "times": 1, "percent": 0.029411764705882353}}},
+      data: {"product": {"Lettuce": {"times": 8, "percent": 0.47058823529411764}, "Tomato": {"times": 3, "percent": 0.17647058823529413}, "Eggs": {"times": 2, "percent": 0.11764705882352941}, "Apple": {"times": 2, "percent": 0.11764705882352941}, "Steak pork": {"times": 1, "percent": 0.058823529411764705}}, "shops": {"Friedrichshain": {"times": 4, "percent": 0.36363636363636365}, "Mitte": {"times": 2, "percent": 0.18181818181818182}, "Tempelhof": {"times": 2, "percent": 0.18181818181818182}, "Potsdam": {"times": 2, "percent": 0.18181818181818182}, "Gesundbrunnen": {"times": 1, "percent": 0.09090909090909091}}, "user_type": {"neu": {"times": 18, "percent": 0.6666666666666666}, "neg": {"times": 1, "percent": 0.037037037037037035}, "pos": {"times": 8, "percent": 0.2962962962962963}}, "question": {"not_found": {"string": "Do you have Apples in sale?", "times": 13, "percent": 0.3170731707317073}, "stock do Lettuce stock  ": {"string": "Do you have Lettuce in stock?", "times": 7, "percent": 0.17073170731707318}, "hours when  hours  ": {"string": "When are your opening hours?", "times": 3, "percent": 0.07317073170731707}}, "stats": {"chatbot": 120, "mail": 50, "phone": 150}},
       chartInstances: {},
       pieChart: pieChart,
       horizontalBar: horizontalBar,
@@ -147,7 +147,9 @@ export default {
       this.req()
       console.log(this.data.user_type.pos.times, this.data.user_type.neu.times, this.data.user_type.neg.times)
       this.pieChart.data.datasets[0].data = [this.data.user_type.pos.times, this.data.user_type.neu.times, this.data.user_type.neg.times]
+      this.horizontalBar.data.datasets[0].data = [this.data.stats.phone, this.data.stats.mail, this.data.stats.chatbot]
       this.chartInstances['userTypePie'].update()
+      this.chartInstances['horizontalBar'].update()
       console.log('Taking a 10s break...')
       await this.sleep(10000)
       console.log('Five second later')
@@ -158,9 +160,9 @@ export default {
     this.createChart('salesBar', this.salesBarChart, [100, 130, 70, 67, 45, 43, 45, 90])
     this.createChart('userBarChart', this.userBarChart, [50, 70, 30])
     this.createChart('horizontalNps', this.horizontalNps, [70, -10, 40, 50])
-    this.createChart('horizontalBar', this.horizontalBar, [70, 40, 50])
     this.createGaugeChart('gaugeChart', this.gaugeChart, [0])
     this.req()
+    this.createChart('horizontalBar', this.horizontalBar, [this.data.stats.phone, this.data.stats.mail, this.data.stats.chatbot])
     this.createChart('userTypePie', this.pieChart, [this.data.user_type.pos.times, this.data.user_type.neu.times, this.data.user_type.neg.times])  
     this.reqhandler()   
   }
@@ -175,8 +177,7 @@ export default {
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .sales, .nps, .issuesResolved, .userTypeBar, .userTypePie, .commonQuestions, .topLocations, .topProducts{
-  border: .3vw solid white;
-  border-radius: .7vw;
+  border: .2vw solid white;
   background-color: grey;
 }
 
@@ -206,10 +207,11 @@ table#ComQue td {
 }
 h1 {
   color:#ffffff;
-  font-size:2vw;
+  font-size:1.7vw;
   font-weight: 700;
   margin: 0;
   padding: .5vw;
+  padding-bottom: 0;
 }
 
 p {
