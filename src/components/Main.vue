@@ -2,16 +2,17 @@
   <div class="main">
     <div class="sales">
       <div id="wrapperSales">
-        <h1>Sales</h1>
+        <h1>Plan Sales vs. Actual Sales by location</h1>
         <canvas id="salesBar"></canvas>
       </div>
     </div>
     <div class="nps">
       <h1 class="head">
-        <b>NPS</b>
+        <b>Avg. NPS vs. Actual NPS by location</b>
       </h1>
-      <div id="wrapperGauge" style="width:45%;height:85%; float: left; display:flex;justify-content:center;">
+      <div id="wrapperGauge" style="width:45%; height:85%; float: left; display:flex;justify-content:center; position: relative;">
         <canvas id="gaugeChart" style="width:100%;height:65%;margin-top:2.5vw;margin-left:1vw;"></canvas>
+        <p style="position: absolute; top: 253px; left: 133px; font-size: 40px;">25</p>
       </div>
       <div id="wrapperGauge" style="width:45%;height:85%; float: right;">
         <canvas id="horizontalNps" style="width:100%;height:65%;margin-top:3vw;padding-right:4%;"></canvas>
@@ -28,19 +29,20 @@
       </div>
     </div>
     <div class="issuesResolved">
-      <div id="wrapper" style="width:100%; height:50%;">
-        <h1 class="head" style="display:flex;justify-content:center;">
+      <div id="wrapper" style="width:100%; height:48%;">
+        <h1 class="head" style="display:flex;justify-content:center; padding-bottom: 0;">
           Issues Resolved
         </h1>
         <div style="width:50%;display:flex;margin:auto;">
           <canvas id="horizontalBar"></canvas>
         </div>
       </div>
-      <div id="wrapper" style="width:100%;height:50%;float:right;">
-        <h1 class="head" style="display:flex;justify-content:center;">
+      <div id="wrapper" style="width:100%;height:48%;float:right;">
+        <h1 class="head" style="display:flex; justify-content:center; padding:0;">
           <b>Common Questions</b>
         </h1>
-        <table id="ComQue">
+        <table id="ComQue" style="margin: 0;">
+          <tr id="first"><th>Rank</th><th>Location</th><th>Mentioned</th></tr>
           <tr v-for="(value, key, index) in data.question" :key="index" v-if="index < 3">
             <td># {{ index + 1 }}</td>
             <td>{{ value.string }}</td>
@@ -67,7 +69,6 @@
       <div class="topProducts" style="display:flex; justify-content:center;">
         <div id="wrapper" style="width:90%;height:75%;">
             <h1 class="head" style="display:flex; justify-content:center;">
-
               <b>Topproducts</b>
             </h1>
           <table id="topPro">
@@ -160,7 +161,7 @@ export default {
     this.createChart('salesBar', this.salesBarChart, [100, 130, 70, 67, 45, 43, 45, 90])
     this.createChart('userBarChart', this.userBarChart, [240, 490, 350])
     this.createChart('horizontalNps', this.horizontalNps, [70, -10, 40, 50])
-    this.createGaugeChart('gaugeChart', this.gaugeChart, [0])
+    this.createGaugeChart('gaugeChart', this.gaugeChart, [25])
     this.req()
     this.createChart('horizontalBar', this.horizontalBar, [this.data.stats.phone, this.data.stats.mail, this.data.stats.chatbot])
     this.createChart('userTypePie', this.pieChart, [this.data.user_type.pos.times, this.data.user_type.neu.times, this.data.user_type.neg.times])  
@@ -174,7 +175,7 @@ export default {
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 0.8fr 1.2fr 1fr 1fr;
   color: #cccccc;
 }
 .sales, .nps, .issuesResolved, .userTypeBar, .userTypePie, .commonQuestions, .topLocations, .topProducts{

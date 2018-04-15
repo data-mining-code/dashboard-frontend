@@ -8,10 +8,10 @@ export const userBarChart = {
         backgroundColor: 'rgba(250,75,40,.8)'
     },{
         data: [600, 340, 580],
-        backgroundColor: 'rgba(250, 181, 71, .8)'
+        backgroundColor: 'rgba(75,250,75,.8)'
     },{
         data: [570, 580, 480],
-        backgroundColor: 'rgba(75,250,75,.8)'
+        backgroundColor: 'rgba(250, 181, 71, .8)'
     }]
   },
 
