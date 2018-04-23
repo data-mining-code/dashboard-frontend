@@ -2,7 +2,7 @@ export const salesBarChart = {
   type: 'bar',
   data: {
     datasets: [{
-      data: [100, 130, 70, 90],
+      data: [100, 130, 95, 65],
       backgroundColor: [
         'rgba(250, 181, 71, .8)',
         'rgba(250, 181, 71, .8)',
@@ -20,10 +20,10 @@ export const salesBarChart = {
     }],
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
-      'Gesund.',
-      'Mitte',
+      'Gesundbrunnen',
+      'Spandau',
       'Potsdam',
-      'Tempelhof'
+      'Friedrichshain'
     ]
   },
   options: {
@@ -47,6 +47,7 @@ export const salesBarChart = {
       }],
       yAxes: [{
         ticks: {
+          suggestedMin: 0,
           fontColor: '#cccccc'
         },
         gridLines: {

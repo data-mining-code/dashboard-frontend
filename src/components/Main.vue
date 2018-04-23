@@ -46,7 +46,7 @@
           <tr v-for="(value, key, index) in data.question" :key="index" v-if="index < 3">
             <td># {{ index + 1 }}</td>
             <td>{{ value.string }}</td>
-            <td>x{{ value.times }}</td>
+            <td>{{ value.times }}</td>
           </tr>
         </table>
       </div>
@@ -99,7 +99,7 @@ export default {
   name: 'Main',
   data () {
     return {
-      data: {"product": {"Lettuce": {"times": 8, "percent": 0.47058823529411764}, "Tomato": {"times": 3, "percent": 0.17647058823529413}, "Eggs": {"times": 2, "percent": 0.11764705882352941}, "Apple": {"times": 2, "percent": 0.11764705882352941}, "Steak pork": {"times": 1, "percent": 0.058823529411764705}}, "shops": {"Friedrichshain": {"times": 4, "percent": 0.36363636363636365}, "Mitte": {"times": 2, "percent": 0.18181818181818182}, "Tempelhof": {"times": 2, "percent": 0.18181818181818182}, "Potsdam": {"times": 2, "percent": 0.18181818181818182}, "Gesundbrunnen": {"times": 1, "percent": 0.09090909090909091}}, "user_type": {"neu": {"times": 18, "percent": 0.6666666666666666}, "neg": {"times": 1, "percent": 0.037037037037037035}, "pos": {"times": 8, "percent": 0.2962962962962963}}, "question": {"not_found": {"string": "Do you have Apples in sale?", "times": 13, "percent": 0.3170731707317073}, "stock do Lettuce stock  ": {"string": "Do you have Lettuce in stock?", "times": 7, "percent": 0.17073170731707318}, "hours when  hours  ": {"string": "When are your opening hours?", "times": 3, "percent": 0.07317073170731707}}, "stats": {"chatbot": 120, "mail": 50, "phone": 150}},
+      data: {"product": {"Lettuce": {"times": 8, "percent": 0.47058823529411764}, "Tomato": {"times": 3, "percent": 0.17647058823529413}, "Eggs": {"times": 2, "percent": 0.11764705882352941}, "Apple": {"times": 2, "percent": 0.11764705882352941}, "Steak pork": {"times": 1, "percent": 0.058823529411764705}}, "shops": {"Friedrichshain": {"times": 4, "percent": 0.36363636363636365}, "Mitte": {"times": 2, "percent": 0.18181818181818182}, "Tempelhof": {"times": 2, "percent": 0.18181818181818182}, "Potsdam": {"times": 2, "percent": 0.18181818181818182}, "Gesundbrunnen": {"times": 1, "percent": 0.09090909090909091}}, "user_type": {"neu": {"times": 330, "percent": 0.6666666666666666}, "neg": {"times": 12, "percent": 0.037037037037037035}, "pos": {"times": 66, "percent": 0.2962962962962963}}, "question": {"not_found": {"string": "Do you have Apples in sale?", "times": 13, "percent": 0.3170731707317073}, "stock do Lettuce stock  ": {"string": "Do you have Lettuce in stock?", "times": 7, "percent": 0.17073170731707318}, "hours when  hours  ": {"string": "When are your opening hours?", "times": 3, "percent": 0.07317073170731707}}, "stats": {"chatbot": 240, "mail": 150, "phone": 300}},
       chartInstances: {},
       pieChart: pieChart,
       horizontalBar: horizontalBar,
@@ -158,7 +158,7 @@ export default {
     }
   },
   mounted () {
-    this.createChart('salesBar', this.salesBarChart, [100, 130, 70, 67, 45, 43, 45, 90])
+    this.createChart('salesBar', this.salesBarChart, [100, 130, 95, 40])
     this.createChart('userBarChart', this.userBarChart, [240, 490, 350])
     this.createChart('horizontalNps', this.horizontalNps, [70, -10, 40, 50])
     this.createGaugeChart('gaugeChart', this.gaugeChart, [25])
