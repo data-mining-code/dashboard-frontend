@@ -32,6 +32,7 @@ export default {
   text-align: center;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   display: grid;
   grid-template-rows: 50px 1fr;
   background-color: #d9d9d9ff;
